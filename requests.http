@@ -1,0 +1,305 @@
+### ════════════════════════════════════════════════════════════════════
+### MelaniApp API — REST Client (VSCode REST Client extension)
+### ════════════════════════════════════════════════════════════════════
+### Flujo rápido:
+###   1. Login → copia el accessToken → pega en @token
+###   2. Usa los endpoints protegidos con Authorization: Bearer {{token}}
+### ════════════════════════════════════════════════════════════════════
+
+@baseUrl = http://localhost:3000
+@token = PEGAR_ACCESS_TOKEN_AQUI
+@refreshToken = PEGAR_REFRESH_TOKEN_AQUI
+@clienteId = PEGAR_CLIENTE_ID_AQUI
+@alumnoId = PEGAR_ALUMNO_ID_AQUI
+@routineId = PEGAR_ROUTINE_ID_AQUI
+@weightLogId = PEGAR_WEIGHT_LOG_ID_AQUI
+@today = 2025-05-14
+
+### ─── AUTH ─────────────────────────────────────────────────────────────────
+
+### Login Admin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@melaniapp.com",
+  "password": "Admin123!"
+}
+
+###
+
+### Login Cliente (Melani)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "melani@trainer.com",
+  "password": "Melani123!"
+}
+
+###
+
+### Refresh access token
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+###
+
+### Logout (revoca el refresh token)
+POST {{baseUrl}}/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+###
+
+### /me — usuario actual
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{token}}
+
+###
+
+### ─── USERS — Admin ──────────────────────────────────────────────────────────
+
+### Listar todos los clientes
+GET {{baseUrl}}/users/clientes
+Authorization: Bearer {{token}}
+
+###
+
+### Crear cliente
+POST {{baseUrl}}/users/clientes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "GymCenter",
+  "email": "gymcenter@mail.com",
+  "password": "Gym123456!",
+  "clientType": "GYM"
+}
+
+###
+
+### Detalle de un cliente
+GET {{baseUrl}}/users/clientes/{{clienteId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Activar / desactivar cliente
+PATCH {{baseUrl}}/users/clientes/{{clienteId}}/toggle-active
+Authorization: Bearer {{token}}
+
+###
+
+### Alumnos de un cliente (vista admin)
+GET {{baseUrl}}/users/clientes/{{clienteId}}/alumnos
+Authorization: Bearer {{token}}
+
+###
+
+### ─── USERS — Cliente ────────────────────────────────────────────────────────
+
+### Mis alumnos
+GET {{baseUrl}}/users/alumnos
+Authorization: Bearer {{token}}
+
+###
+
+### Crear alumno
+POST {{baseUrl}}/users/alumnos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "apellido": "García",
+  "email": "ana@gmail.com",
+  "password": "Ana12345!",
+  "telefono": "+54 9 11 1234-0000"
+}
+
+###
+
+### Detalle de alumno
+GET {{baseUrl}}/users/alumnos/{{alumnoId}}
+Authorization: Bearer {{token}}
+
+###
+
+### ─── ROUTINES ────────────────────────────────────────────────────────────────
+
+### [ALUMNO] Mis rutinas
+GET {{baseUrl}}/routines/me
+Authorization: Bearer {{token}}
+
+###
+
+### Todas las rutinas de mis alumnos
+GET {{baseUrl}}/routines
+Authorization: Bearer {{token}}
+
+###
+
+### Rutinas de un alumno específico
+GET {{baseUrl}}/routines/alumno/{{alumnoId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Crear rutina
+POST {{baseUrl}}/routines
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "alumnoId": {{alumnoId}},
+  "name": "Rutina Tren Superior",
+  "days": [
+    {
+      "day": "Lunes",
+      "exercises": [
+        { "id": "ex1", "name": "Press de banca", "sets": 3, "reps": 12, "rest": 60, "notes": "" },
+        { "id": "ex2", "name": "Dominadas", "sets": 3, "reps": 8, "rest": 90, "notes": "Asistidas si es necesario" }
+      ]
+    },
+    {
+      "day": "Jueves",
+      "exercises": [
+        { "id": "ex3", "name": "Press militar", "sets": 3, "reps": 10, "rest": 60, "notes": "" },
+        { "id": "ex4", "name": "Elevaciones laterales", "sets": 3, "reps": 15, "rest": 45, "notes": "" }
+      ]
+    }
+  ]
+}
+
+###
+
+### Copiar rutina a otros alumnos
+POST {{baseUrl}}/routines/{{routineId}}/copy
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "targetAlumnoIds": [{{alumnoId}}]
+}
+
+###
+
+### Eliminar rutina
+DELETE {{baseUrl}}/routines/{{routineId}}
+Authorization: Bearer {{token}}
+
+###
+
+### ─── WEIGHT LOGS ─────────────────────────────────────────────────────────────
+
+### [ALUMNO] Mi historial de peso
+GET {{baseUrl}}/weight-logs/me
+Authorization: Bearer {{token}}
+
+###
+
+### Historial de peso de un alumno
+GET {{baseUrl}}/weight-logs/{{alumnoId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Registrar peso
+POST {{baseUrl}}/weight-logs
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "alumnoId": {{alumnoId}},
+  "date": "{{today}}",
+  "weight": 62.5,
+  "notes": "Mañana en ayunas"
+}
+
+###
+
+### Eliminar registro de peso
+DELETE {{baseUrl}}/weight-logs/{{weightLogId}}
+Authorization: Bearer {{token}}
+
+###
+
+### ─── WORKOUT LOGS ────────────────────────────────────────────────────────────
+
+### [ALUMNO] Mis entrenos
+GET {{baseUrl}}/workout-logs/me
+Authorization: Bearer {{token}}
+
+###
+
+### [ALUMNO] Entreno de un día específico
+GET {{baseUrl}}/workout-logs/me/{{today}}/{{routineId}}
+Authorization: Bearer {{token}}
+
+###
+
+### [ALUMNO] Marcar ejercicios como hechos
+PUT {{baseUrl}}/workout-logs/me
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "date": "{{today}}",
+  "routineId": {{routineId}},
+  "exercises": [
+    {
+      "exerciseId": "ex1",
+      "completed": true,
+      "sets": [
+        { "done": true, "weight": 50, "reps": 12 },
+        { "done": true, "weight": 52.5, "reps": 10 },
+        { "done": false, "weight": 55, "reps": 8 }
+      ]
+    }
+  ]
+}
+
+###
+
+### Historial de entrenos de un alumno
+GET {{baseUrl}}/workout-logs/{{alumnoId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Log de un día específico
+GET {{baseUrl}}/workout-logs/{{alumnoId}}/{{today}}/{{routineId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Upsert log de entreno (crea o actualiza)
+PUT {{baseUrl}}/workout-logs
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "alumnoId": {{alumnoId}},
+  "date": "{{today}}",
+  "routineId": {{routineId}},
+  "exercises": [
+    {
+      "exerciseId": "ex1",
+      "completed": true,
+      "sets": [
+        { "done": true, "weight": 50, "reps": 12 },
+        { "done": true, "weight": 52.5, "reps": 10 },
+        { "done": false, "weight": 55, "reps": 8 }
+      ]
+    }
+  ]
+}
