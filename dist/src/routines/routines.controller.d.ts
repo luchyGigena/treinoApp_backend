@@ -6,9 +6,9 @@ export declare class RoutinesController {
     constructor(routinesService: RoutinesService);
     getMyRoutines(user: any): Promise<{
         id: number;
-        name: string;
-        createdAt: Date;
         alumnoId: number;
+        createdAt: Date;
+        name: string;
         days: import("@prisma/client/runtime/library").JsonValue;
     }[]>;
     getAll(user: any): Promise<({
@@ -19,23 +19,23 @@ export declare class RoutinesController {
         };
     } & {
         id: number;
-        name: string;
-        createdAt: Date;
         alumnoId: number;
+        createdAt: Date;
+        name: string;
         days: import("@prisma/client/runtime/library").JsonValue;
     })[]>;
     getByAlumno(user: any, alumnoId: number): Promise<{
         id: number;
-        name: string;
-        createdAt: Date;
         alumnoId: number;
+        createdAt: Date;
+        name: string;
         days: import("@prisma/client/runtime/library").JsonValue;
     }[]>;
     create(user: any, dto: CreateRoutineDto): Promise<{
         id: number;
-        name: string;
-        createdAt: Date;
         alumnoId: number;
+        createdAt: Date;
+        name: string;
         days: import("@prisma/client/runtime/library").JsonValue;
     }>;
     delete(user: any, id: number): Promise<{
@@ -43,9 +43,9 @@ export declare class RoutinesController {
     }>;
     copy(user: any, id: number, dto: CopyRoutineDto): Promise<{
         id: number;
-        name: string;
-        createdAt: Date;
         alumnoId: number;
+        createdAt: Date;
+        name: string;
         days: import("@prisma/client/runtime/library").JsonValue;
     }[]>;
 }

@@ -12,10 +12,11 @@ export declare class AuthService {
             };
             perfilCliente: {
                 id: number;
+                createdAt: Date;
                 nombre: string | null;
                 apellido: string | null;
                 telefono: string | null;
-                createdAt: Date;
+                userId: number;
                 clientType: import(".prisma/client").$Enums.ClientType;
                 emailContacto: string | null;
                 nombreComercial: string | null;
@@ -24,18 +25,17 @@ export declare class AuthService {
                 cuit: string | null;
                 direccion: string | null;
                 updatedAt: Date;
-                userId: number;
             };
             id: number;
+            createdAt: Date;
             name: string;
-            email: string;
             nombre: string | null;
             apellido: string | null;
             telefono: string | null;
+            email: string;
             roleId: number;
             avatar: string | null;
             active: boolean;
-            createdAt: Date;
             clienteId: number | null;
         };
         accessToken: string;

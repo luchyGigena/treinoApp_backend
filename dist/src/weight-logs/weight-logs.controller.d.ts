@@ -5,27 +5,27 @@ export declare class WeightLogsController {
     constructor(weightLogsService: WeightLogsService);
     getMyWeightLogs(user: any): Promise<{
         id: number;
-        createdAt: Date;
         alumnoId: number;
-        notes: string | null;
         date: string;
+        createdAt: Date;
         weight: import("@prisma/client/runtime/library").Decimal;
+        notes: string | null;
     }[]>;
     getWeightLogs(user: any, alumnoId: number): Promise<{
         id: number;
-        createdAt: Date;
         alumnoId: number;
-        notes: string | null;
         date: string;
+        createdAt: Date;
         weight: import("@prisma/client/runtime/library").Decimal;
+        notes: string | null;
     }[]>;
     create(user: any, dto: CreateWeightLogDto): Promise<{
         id: number;
-        createdAt: Date;
         alumnoId: number;
-        notes: string | null;
         date: string;
+        createdAt: Date;
         weight: import("@prisma/client/runtime/library").Decimal;
+        notes: string | null;
     }>;
     delete(user: any, id: number): Promise<{
         message: string;

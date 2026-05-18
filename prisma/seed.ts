@@ -19,7 +19,7 @@ async function main() {
   const alumnoRole = await prisma.role.upsert({
     where: { name: 'ALUMNO' },
     update: {},
-    create: { name: 'ALUMNO' },
+    create: { name: 'ALUMNO' }, 
   });
 
   const admin = await prisma.user.upsert({

@@ -6,20 +6,24 @@ export declare class UsersController {
     constructor(usersService: UsersService);
     getAllClientes(): Promise<{
         id: number;
+        createdAt: Date;
         name: string;
-        role: {
-            name: string;
+        _count: {
+            alumnos: number;
         };
         email: string;
         avatar: string;
         active: boolean;
-        createdAt: Date;
+        role: {
+            name: string;
+        };
         perfilCliente: {
             id: number;
+            createdAt: Date;
             nombre: string | null;
             apellido: string | null;
             telefono: string | null;
-            createdAt: Date;
+            userId: number;
             clientType: import(".prisma/client").$Enums.ClientType;
             emailContacto: string | null;
             nombreComercial: string | null;
@@ -28,22 +32,22 @@ export declare class UsersController {
             cuit: string | null;
             direccion: string | null;
             updatedAt: Date;
-            userId: number;
-        };
-        _count: {
-            alumnos: number;
         };
     }[]>;
     createCliente(dto: CreateClienteDto): Promise<{
+        _count: {
+            alumnos: number;
+        };
         role: {
             name: string;
         };
         perfilCliente: {
             id: number;
+            createdAt: Date;
             nombre: string | null;
             apellido: string | null;
             telefono: string | null;
-            createdAt: Date;
+            userId: number;
             clientType: import(".prisma/client").$Enums.ClientType;
             emailContacto: string | null;
             nombreComercial: string | null;
@@ -52,33 +56,33 @@ export declare class UsersController {
             cuit: string | null;
             direccion: string | null;
             updatedAt: Date;
-            userId: number;
-        };
-        _count: {
-            alumnos: number;
         };
         id: number;
+        createdAt: Date;
         name: string;
-        email: string;
         nombre: string | null;
         apellido: string | null;
         telefono: string | null;
+        email: string;
         roleId: number;
         avatar: string | null;
         active: boolean;
-        createdAt: Date;
         clienteId: number | null;
     }>;
     getClienteById(id: number): Promise<{
+        _count: {
+            alumnos: number;
+        };
         role: {
             name: string;
         };
         perfilCliente: {
             id: number;
+            createdAt: Date;
             nombre: string | null;
             apellido: string | null;
             telefono: string | null;
-            createdAt: Date;
+            userId: number;
             clientType: import(".prisma/client").$Enums.ClientType;
             emailContacto: string | null;
             nombreComercial: string | null;
@@ -87,33 +91,33 @@ export declare class UsersController {
             cuit: string | null;
             direccion: string | null;
             updatedAt: Date;
-            userId: number;
-        };
-        _count: {
-            alumnos: number;
         };
         id: number;
+        createdAt: Date;
         name: string;
-        email: string;
         nombre: string | null;
         apellido: string | null;
         telefono: string | null;
+        email: string;
         roleId: number;
         avatar: string | null;
         active: boolean;
-        createdAt: Date;
         clienteId: number | null;
     }>;
     toggleClienteActive(id: number): Promise<{
+        _count: {
+            alumnos: number;
+        };
         role: {
             name: string;
         };
         perfilCliente: {
             id: number;
+            createdAt: Date;
             nombre: string | null;
             apellido: string | null;
             telefono: string | null;
-            createdAt: Date;
+            userId: number;
             clientType: import(".prisma/client").$Enums.ClientType;
             emailContacto: string | null;
             nombreComercial: string | null;
@@ -122,70 +126,66 @@ export declare class UsersController {
             cuit: string | null;
             direccion: string | null;
             updatedAt: Date;
-            userId: number;
-        };
-        _count: {
-            alumnos: number;
         };
         id: number;
+        createdAt: Date;
         name: string;
-        email: string;
         nombre: string | null;
         apellido: string | null;
         telefono: string | null;
+        email: string;
         roleId: number;
         avatar: string | null;
         active: boolean;
-        createdAt: Date;
         clienteId: number | null;
     }>;
     getClienteAlumnos(id: number): Promise<{
         id: number;
+        createdAt: Date;
         name: string;
-        email: string;
         nombre: string;
         apellido: string;
         telefono: string;
+        email: string;
         avatar: string;
         active: boolean;
-        createdAt: Date;
     }[]>;
     getMyAlumnos(user: any): Promise<{
         id: number;
+        createdAt: Date;
         name: string;
-        email: string;
         nombre: string;
         apellido: string;
         telefono: string;
+        email: string;
         avatar: string;
         active: boolean;
-        createdAt: Date;
     }[]>;
     createAlumno(user: any, dto: CreateAlumnoDto): Promise<{
         id: number;
+        createdAt: Date;
         name: string;
-        email: string;
         nombre: string;
         apellido: string;
         telefono: string;
+        email: string;
         avatar: string;
         active: boolean;
-        createdAt: Date;
     }>;
     getAlumnoById(user: any, id: number): Promise<{
         id: number;
+        createdAt: Date;
         name: string;
-        email: string;
+        _count: {
+            workoutLogs: number;
+            routines: number;
+            weightLogs: number;
+        };
         nombre: string;
         apellido: string;
         telefono: string;
+        email: string;
         avatar: string;
         active: boolean;
-        createdAt: Date;
-        _count: {
-            routines: number;
-            weightLogs: number;
-            workoutLogs: number;
-        };
     }>;
 }
