@@ -4,72 +4,10 @@ import { UpsertMyWorkoutLogDto } from './dto/upsert-my-workout-log.dto';
 export declare class WorkoutLogsController {
     private workoutLogsService;
     constructor(workoutLogsService: WorkoutLogsService);
-    getMyWorkoutLogs(user: any): Promise<({
-        routine: {
-            id: number;
-            name: string;
-        };
-    } & {
-        id: number;
-        alumnoId: number;
-        routineId: number;
-        date: string;
-        exercises: import("@prisma/client/runtime/library").JsonValue;
-        createdAt: Date;
-    })[]>;
-    getMyWorkoutLog(user: any, date: string, routineId: number): Promise<{
-        routine: {
-            id: number;
-            name: string;
-        };
-    } & {
-        id: number;
-        alumnoId: number;
-        routineId: number;
-        date: string;
-        exercises: import("@prisma/client/runtime/library").JsonValue;
-        createdAt: Date;
-    }>;
-    upsertMyWorkoutLog(user: any, dto: UpsertMyWorkoutLogDto): Promise<{
-        id: number;
-        alumnoId: number;
-        routineId: number;
-        date: string;
-        exercises: import("@prisma/client/runtime/library").JsonValue;
-        createdAt: Date;
-    }>;
-    getAll(user: any, alumnoId: number): Promise<({
-        routine: {
-            id: number;
-            name: string;
-        };
-    } & {
-        id: number;
-        alumnoId: number;
-        routineId: number;
-        date: string;
-        exercises: import("@prisma/client/runtime/library").JsonValue;
-        createdAt: Date;
-    })[]>;
-    getOne(user: any, alumnoId: number, date: string, routineId: number): Promise<{
-        routine: {
-            id: number;
-            name: string;
-        };
-    } & {
-        id: number;
-        alumnoId: number;
-        routineId: number;
-        date: string;
-        exercises: import("@prisma/client/runtime/library").JsonValue;
-        createdAt: Date;
-    }>;
-    upsert(user: any, dto: UpsertWorkoutLogDto): Promise<{
-        id: number;
-        alumnoId: number;
-        routineId: number;
-        date: string;
-        exercises: import("@prisma/client/runtime/library").JsonValue;
-        createdAt: Date;
-    }>;
+    getMyWorkoutLogs(user: any): Promise<any>;
+    getMyWorkoutLog(user: any, date: string, routineId: number): Promise<any>;
+    upsertMyWorkoutLog(user: any, dto: UpsertMyWorkoutLogDto): Promise<any>;
+    getAll(user: any, alumnoId: number): Promise<any>;
+    getOne(user: any, alumnoId: number, date: string, routineId: number): Promise<any>;
+    upsert(user: any, dto: UpsertWorkoutLogDto): Promise<any>;
 }
